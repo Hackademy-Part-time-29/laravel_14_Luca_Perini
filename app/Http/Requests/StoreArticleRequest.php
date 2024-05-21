@@ -24,7 +24,8 @@ class StoreArticleRequest extends FormRequest
         return [
             'title'=>'required|max:50',
             'body'=>'required|max:100',
-            'cover'=>'mimes:jpg,bmp,png'
+            'cover'=>'mimes:jpg,bmp,png',
+            'author_id'=>'required|exists:authors,id',
         ];
     }
     public function messages(){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,8 +15,8 @@ class ArticleController extends Controller
         return view('articles', compact('articles'));
     }
     public function ArticleCreate(){
-
-        return view('add-article');
+        $authors=Author::all();
+        return view('add-article', compact('authors'));
     }
 
     public function store(StoreArticleRequest $request){
@@ -25,6 +26,7 @@ class ArticleController extends Controller
         $article = Article::create([
             'title'=>$request->title,
             'body'=>$request->body,
+            'author_id'=>$request->author_id,
         ]);
 
         if($request->hasFile('cover')){

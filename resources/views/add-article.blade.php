@@ -41,6 +41,18 @@
                 </div>
                 @enderror
               </div>
+              
+              <select name="author_id">
+                <option selected>Choose an Author:</option>
+                @foreach($authors as $author)
+                        <option value="{{$author->id}}">{{$author->name}} {{$author->surname}}</option>
+                    @endforeach
+              </select>
+              @error('author_id')
+              <div class="fail-message">
+                  {{$message}}
+              </div>
+              @enderror <br>
             <button type="submit" class="btn-create">+Create Article</button>
         </form>
     </div>
